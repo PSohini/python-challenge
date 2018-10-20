@@ -1,28 +1,44 @@
-#First import the os module
-# This will allow us to create file paths across operating systems
+# import the os module
 import os
-
 #Module for reading csv files
 import csv
-csvpath = os.path.join('..','PyBank','budget_data.csv')
-# Method 2: Improved Reading using CSV module
-
-with open(csvpath, newline='') as csvfile:
-
+#Files to load 
+file_to_load = os.path.join('election.csv')
+print(file_to_load)
+#Declare Global Variables
+TotVotes = 0
+with open(file_to_load, newline='') as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
-    csvreader = csv.reader(csvfile, delimiter=',')
+    reader = csv.reader(csvfile, delimiter=',')
 
-    print(csvreader)
+# Set a variable to header and set that to next csv reader
+    header=next(reader)
+    first_row = next(reader)
+    print(header)
 
-    # Read the header row first (skip this step if there is now header)
-    csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+# Extract row 1 to avoid appending to change values
+    first_row = next(reader)
+    TotVotes = TotVotes + 1
+     for row in reader:
+        TotVotes = TotVotes + 1
+    
 
-    # Read each row of data after the header
-    for row in csvreader:
-        print(row)
 
-    print("let's do it again")
+    #Generate Output Summary
+output = (
+          f"\n Election Results \n"
+          f"---------------------------------\n"
+          f"Total Votes: {TotVotes}\n"
+          f"---------------------------------\n")
+          #f"Average Change : ${net_monthly_avg:.2f}\n"
+          #f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n"
+          #f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n"
+print(output)
 
-    for row in csvreader:
-        print(row)
+#Write output file
+# Set variable for output file
+output_file = os.path.join("pypoll_final.csv")
+
+# Display results on output file
+with open(output_file, "w") as txt_file:
+   txt_file.write(output)
