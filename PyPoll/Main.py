@@ -6,16 +6,19 @@ import csv
 file_to_load = os.path.join('election_data.csv')
 print(file_to_load)
 #Declare Global Variables
-#TotVotes = 0
+
 with open(file_to_load, newline='') as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
-    reader = csv.reader(csvfile, delimiter=',')
+    reader = csv.reader(file_to_load, delimiter=',')
+  
+#Get Total Votes.Count Rows
+row_count = sum(1 for line in open(file_to_load))
 
 #Generate Output Summary
 output = (
           f"\n Election Results \n"
           f"---------------------------------\n"
-          f"Total Votes: {TotVotes}\n"
+          f"Total Votes: {row_count}\n"
           f"---------------------------------\n")
           #f"Average Change : ${net_monthly_avg:.2f}\n"
           #f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n"
