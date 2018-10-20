@@ -3,28 +3,15 @@ import os
 #Module for reading csv files
 import csv
 #Files to load 
-file_to_load = os.path.join('election.csv')
+file_to_load = os.path.join('election_data.csv')
 print(file_to_load)
 #Declare Global Variables
-TotVotes = 0
+#TotVotes = 0
 with open(file_to_load, newline='') as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
     reader = csv.reader(csvfile, delimiter=',')
 
-# Set a variable to header and set that to next csv reader
-    header=next(reader)
-    first_row = next(reader)
-    print(header)
-
-# Extract row 1 to avoid appending to change values
-    first_row = next(reader)
-    TotVotes = TotVotes + 1
-     for row in reader:
-        TotVotes = TotVotes + 1
-    
-
-
-    #Generate Output Summary
+#Generate Output Summary
 output = (
           f"\n Election Results \n"
           f"---------------------------------\n"
