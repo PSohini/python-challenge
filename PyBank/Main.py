@@ -43,8 +43,8 @@ with open(file_to_load, newline='') as csvfile:
 
  # Calculate the greatest increase
         if net_change > greatest_increase[1]:
-            greatest_decrease[0] = row[0]
-            greatest_decrease[1] = net_change
+            greatest_increase[0] = row[0]
+            greatest_increase[1] = net_change
 
 # Calculate avg net change
 net_monthly_avg = sum(net_change_list) / len(net_change_list)
